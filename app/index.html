@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice City Nights — GTA-style Cover Art Maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VC</span>
+    <div>
+      <h1>Vice City Nights</h1>
+      <p>Turn your photo and a caption into GTA-style cover art.</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="undo" type="button" title="Undo (Ctrl+Z)">↩ Undo</button>
+    <button id="redo" type="button" title="Redo (Ctrl+Y)">↪ Redo</button>
+  </div>
+</header>
+
+<main class="app">
+  <aside class="controls" aria-label="Cover controls">
+    <section>
+      <h2>1 · Photos</h2>
+      <label class="file-label">Add your photos
+        <input id="photos" type="file" accept="image/*" multiple>
+      </label>
+      <div class="row">
+        <button id="sample-pier" type="button">Sample: Pier</button>
+        <button id="sample-boulevard" type="button">Sample: Boulevard</button>
+        <button id="clear-photos" type="button">Clear</button>
+      </div>
+      <div class="row radio-row">
+        <label><input id="fill-one" type="radio" name="fill" checked> One photo, all panels</label>
+        <label><input id="fill-each" type="radio" name="fill"> One photo per panel</label>
+      </div>
+      <label>Photo for the selected panel
+        <select id="panel-photo"></select>
+      </label>
+      <p class="hint">Photos are read on your machine and never uploaded.</p>
+    </section>
+
+    <section>
+      <h2>2 · Layout</h2>
+      <div id="layout-choices" class="choices"></div>
+    </section>
+
+    <section>
+      <h2>3 · Grade</h2>
+      <div id="grade-choices" class="choices"></div>
+    </section>
+
+    <section>
+      <h2>4 · Lettering</h2>
+      <label>Title
+        <input id="title" type="text" maxlength="40" value="Sunset Heist">
+      </label>
+      <label>Subtitle
+        <input id="subtitle" type="text" maxlength="40" value="neon shore">
+      </label>
+      <div id="font-choices" class="choices"></div>
+      <div id="color-choices" class="choices"></div>
+      <label>Title size
+        <input id="title-size" type="range" min="40" max="160" value="100">
+      </label>
+      <label>Title tilt
+        <input id="tilt" type="range" min="-8" max="8" value="-2">
+      </label>
+      <label class="check"><input id="badge" type="checkbox" checked> Vice City Nights ribbon</label>
+      <label>Heat meter <span id="stars-value">4 / 5</span>
+        <input id="stars" type="range" min="0" max="5" step="1" value="4">
+      </label>
+    </section>
+
+    <section>
+      <h2>5 · Crop the selected panel</h2>
+      <p class="hint" id="panel-label">Photo (all panels)</p>
+      <label>Zoom <span id="zoom-value">1.00x</span>
+        <input id="zoom" type="range" min="1" max="3" step="0.01" value="1">
+      </label>
+      <label>Pan left / right
+        <input id="pan-x" type="range" min="-1" max="1" step="0.01" value="0">
+      </label>
+      <label>Pan up / down
+        <input id="pan-y" type="range" min="-1" max="1" step="0.01" value="0">
+      </label>
+      <p class="hint">Or click a panel and drag it, scroll to zoom.</p>
+    </section>
+
+    <section>
+      <h2>6 · Export</h2>
+      <label>Post size
+        <select id="export-size"></select>
+      </label>
+      <button id="export" type="button" class="primary">Export PNG</button>
+      <button id="export-all" type="button">Export all three sizes</button>
+      <p id="status" role="status"></p>
+    </section>
+  </aside>
+
+  <section class="stage" aria-label="Live preview">
+    <canvas id="preview" width="900" height="900" aria-label="The cover, live preview"></canvas>
+    <p class="stage-hint">Live preview — click a panel to select it, drag to pan, scroll to zoom.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Offline by design: no network requests, no uploads. Fonts Anton, Bebas Neue and Pacifico ship under the SIL Open Font License. An original design — no Rockstar Games logo, artwork, character or font.</p>
+</footer>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
